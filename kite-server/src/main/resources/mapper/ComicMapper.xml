@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kiteseven.kiteserver.mapper.ComicMapper">
+    <select id="getWeekRankingComic" resultType="org.kiteseven.kitepojo.vo.ComicVO">
+        select * from comic where
+            create_time &lt;=NOW() - INTERVAL 7 Day
+        group by comic_id
+        order by click desc limit 0,10
+    </select>
+    <select id="getMonthRankingComic" resultType="org.kiteseven.kitepojo.vo.ComicVO">
+        select * from comic where
+            create_time &lt;=NOW() - INTERVAL 30 Day
+        group by comic_id
+        order by click desc limit 0,10
+    </select>
+
+
+</mapper>

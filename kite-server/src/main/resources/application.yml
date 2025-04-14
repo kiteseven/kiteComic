@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+      active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+      driver-class-name: ${kiteComic.datasource.driver-class-name}
+      url: jdbc:mysql://${kiteComic.datasource.host}:${kiteComic.datasource.port}/${kiteComic.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${kiteComic.datasource.username}
+      password: ${kiteComic.datasource.password}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.kiteseven.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+
+kiteComic:
+         jwt:
+          user-SecretKey-String: a_secure_key_for_kite_seven_user_with_more_than_32_chars
+          user-ttl: 7200000
+          user-token-name: authentication
+         alioss:
+            endpoint: ${kiteComic.alioss.endpoint}
+            access-key-secret: ${kiteComic.alioss.access-key-secret}
+            access-key-id: ${kiteComic.alioss.access-key-id}
+            bucket-name: ${kiteComic.alioss.bucket-name}
