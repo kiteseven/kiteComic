@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.kiteseven.kitecommon.constant.MessageConstant;
 import org.kiteseven.kitecommon.exception.ComicErrorException;
 import org.kiteseven.kitecommon.result.PageResult;
+import org.kiteseven.kitepojo.entity.Comic;
+import org.kiteseven.kitepojo.entity.UserReaderConfig;
 import org.kiteseven.kitepojo.vo.ComicPageVO;
 import org.kiteseven.kitepojo.vo.ComicVO;
 import org.kiteseven.kitepojo.vo.ComicChapterVO;
@@ -79,5 +81,15 @@ public class ComicServiceImpl implements ComicService {
         );
         log.info("获取到的章节内容信息：{}",comicPageVO);
         return comicPageVO;
+    }
+
+    @Override
+    public UserReaderConfig getUserReaderConfig() {
+        return comicMapper.getUserReaderConfig();
+    }
+
+    @Override
+    public Comic getComicBySlug(String slug) {
+        return comicMapper.getComicBySlug(slug);
     }
 }

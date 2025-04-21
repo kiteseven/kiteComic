@@ -2,7 +2,9 @@ package org.kiteseven.kiteserver.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.kiteseven.kitepojo.entity.Comic;
 import org.kiteseven.kitepojo.entity.ComicPage;
+import org.kiteseven.kitepojo.entity.UserReaderConfig;
 import org.kiteseven.kitepojo.vo.ComicVO;
 
 import java.util.List;
@@ -27,5 +29,9 @@ public interface ComicMapper {
     ComicVO getComicById(Long comicId);
     @Select("select comic_title from comic where comic_id =#{comicId}")
     String getComicTitle(Long comicId);
+    @Select("select * from user_reader_config")
+    UserReaderConfig getUserReaderConfig();
 
+    @Select("select * from comic where slug=#{slug}")
+    Comic getComicBySlug(String slug);
 }
